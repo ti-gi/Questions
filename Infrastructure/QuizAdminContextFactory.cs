@@ -11,8 +11,8 @@ namespace Infrastructure.Data
 
             // Replace with your actual connection string
             optionsBuilder.UseMySql(
-                     "server=win19.mojsite.com,3306;database=pqsightcom_quiz_admin_dev;uid=pqsightcom_abs;pwd=rjadkwnclihfuspyozqg",
-                    ServerVersion.AutoDetect("server=win19.mojsite.com,3306;database=pqsightcom_quiz_admin_dev;uid=pqsightcom_abs;pwd=rjadkwnclihfuspyozqg"),
+                     "server=win19.mojsite.com,3306;database=pqsightcom_questions_dev;uid=pqsightcom_abs;pwd=rjadkwnclihfuspyozqg",
+                    ServerVersion.AutoDetect("server=win19.mojsite.com,3306;database=pqsightcom_questions_dev;uid=pqsightcom_abs;pwd=rjadkwnclihfuspyozqg"),
                                             options => options.EnableRetryOnFailure(
                                                     maxRetryCount: 5,
                                                     maxRetryDelay: System.TimeSpan.FromSeconds(10),

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Questions.Infrastructure.Migrations
 {
     [DbContext(typeof(QuestionsContext))]
-    [Migration("20251217071804_QuizAdded")]
-    partial class QuizAdded
+    [Migration("20260114200929_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace Questions.Infrastructure.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("Questions.Core.Competition", b =>
+            modelBuilder.Entity("Questions.Core.Question", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,47 +32,17 @@ namespace Questions.Infrastructure.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Answer")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Question1")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Competitions");
-                });
-
-            modelBuilder.Entity("Questions.Core.Quiz", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("CompetitionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompetitionId");
-
-                    b.ToTable("Quizzes");
-                });
-
-            modelBuilder.Entity("Questions.Core.Quiz", b =>
-                {
-                    b.HasOne("Questions.Core.Competition", null)
-                        .WithMany("Quizzes")
-                        .HasForeignKey("CompetitionId");
-                });
-
-            modelBuilder.Entity("Questions.Core.Competition", b =>
-                {
-                    b.Navigation("Quizzes");
+                    b.ToTable("Questions");
                 });
 #pragma warning restore 612, 618
         }

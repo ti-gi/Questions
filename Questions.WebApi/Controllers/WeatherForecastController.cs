@@ -1,8 +1,6 @@
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Questions.Core;
-using Questions.UseCases;
-using System.Xml.Linq;
 
 namespace Questions.WebApi.Controllers
 {
@@ -27,14 +25,9 @@ namespace Questions.WebApi.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            //var q = Quiz.Create("quiz1");
-            //var competition = _context.Competitions.First(x => x.Id == 1);
-            //competition.Quizzes.Add(q);
-            //_context.SaveChanges();
 
-            var r = Round.Create("round 1", 1, 1);
-            var quizzes = _context.Quizzes.First(x => x.Id == 1);
-            quizzes.Rounds.Add(r);
+            var r = Question.Create("question 1", "answer 1");
+            _context.Questions.Add(r);
             _context.SaveChanges();
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
