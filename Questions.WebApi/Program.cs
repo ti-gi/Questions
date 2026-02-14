@@ -1,5 +1,6 @@
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Questions.Infrastructure.RabbitMq;
 using Questions.UseCases.Questions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,7 @@ builder.Services.AddDbContext<QuestionsContext>(options =>
 );
 
 // Add services to the container.
-
+builder.Services.AddSingleton<IRabbitMqService, RabbitMqService>();
 builder.Services.AddControllers();
 builder.Services.AddTransient<IQuestionUseCases, QuestionUseCases>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
